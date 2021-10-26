@@ -7,45 +7,23 @@ server:
 spring:
   shardingsphere:
     datasource:
-      names: db01-master,db01-slave,db02-master,db02-slave
-      db01-master:
-        jdbc-url: jdbc:mysql://ip:port/ds01?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false
+      names: db01,db02
+      db01:
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/test_users?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false
         username: root
-        password: root
+        password: root123456
         driver-class-name: com.mysql.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
-      db01-slave:
-        jdbc-url: jdbc:mysql://ip:port/ds01?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false
+      db02:
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/test_account?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false
         username: root
-        password: root
-        driver-class-name: com.mysql.jdbc.Driver
-        type: com.zaxxer.hikari.HikariDataSource
-      db02-master:
-        jdbc-url: jdbc:mysql://ip:port/ds02?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false
-        username: root
-        password: root
-        driver-class-name: com.mysql.jdbc.Driver
-        type: com.zaxxer.hikari.HikariDataSource
-      db02-slave:
-        jdbc-url: jdbc:mysql://ip:port/ds02?characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false
-        username: root
-        password: root
+        password: root123456
         driver-class-name: com.mysql.jdbc.Driver
         type: com.zaxxer.hikari.HikariDataSource
     props:
       sql:
         show: true
     sharding:
-      master-slave-rules:
-        ds_db01:
-          master-data-source-name: db01-master
-          slave-data-source-names:
-            - db01-slave
-        ds_db02:
-          master-data-source-name: db02-master
-          slave-data-source-names:
-            - db02-slave
-      default-data-source-name: ds_db01
       default-database-strategy:
         hint:
           algorithm-class-name: com.jiyu.conf.MyDatasourceRoutingAlgorithm

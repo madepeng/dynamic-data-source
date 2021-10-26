@@ -24,10 +24,11 @@ public class ShardingTestServiceImpl implements ShardingTestService {
     AccountMapper accountMapper;
 
     @Override
-    @ShardingTransactionType(TransactionType.XA)
+    @ShardingTransactionType(TransactionType.LOCAL)
     @Transactional
     public void testTransaction() {
-        int userResult = userMapper.updateUserName("jiyuge", 1);
+        int userResult = userMapper.updateUserName("ggggg", 1);
+//        int i = 1/0;
         int accountResult = accountMapper.accountAddBalance(BigDecimal.ONE, 1);
         System.out.println("用户表返回数量：" + userResult);
         System.out.println("账户表返回数量："+ accountResult);

@@ -33,7 +33,7 @@ public class DataSourceAop {
     @Before("switchDataSourceDb01()")
     public void doDb01Before() {
         HintManager hintManager = HintManager.getInstance();
-        hintManager.setDatabaseShardingValue("ds_db01");
+        hintManager.setDatabaseShardingValue("db01");
     }
 
     /**
@@ -55,7 +55,7 @@ public class DataSourceAop {
     @Before("switchDataSourceDb02()")
     public void doDb02Before() {
         HintManager hintManager = HintManager.getInstance();
-        hintManager.setDatabaseShardingValue("ds_db02");
+        hintManager.setDatabaseShardingValue("db02");
     }
 
     /**
